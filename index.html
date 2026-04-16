@@ -1,7 +1,680 @@
----
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naga Prem Sai Pendela — Data Analyst & AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --card: #13131a;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #7c6fff;
+    --accent2: #a78bfa;
+    --teal: #2dd4bf;
+    --text: #f0f0f5;
+    --muted: #8b8b9e;
+    --muted2: #5a5a6e;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,111,255,0.1);
+    border: 1px solid rgba(124,111,255,0.25);
+    color: var(--accent2);
+    font-size: 0.8rem; font-weight: 500;
+    padding: 0.35rem 0.85rem;
+    border-radius: 99px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+  h1 .line2 { color: var(--accent); }
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 440px;
+    margin-bottom: 2rem;
+    line-height: 1.75;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid var(--border2);
+    color: var(--text);
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+  /* hero right side stats */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border2); }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    color: var(--text);
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: rgba(124,111,255,0.35); transform: translateY(-3px); }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .project-link {
+    color: var(--muted2);
+    text-decoration: none;
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .project-link:hover { color: var(--accent2); border-color: var(--accent); }
+  .project-tagline {
+    font-size: 0.9rem;
+    color: var(--teal);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  .project-bullets { list-style: none; margin-bottom: 1.5rem; flex: 1; }
+  .project-bullets li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    padding: 0.35rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-bullets li:last-child { border-bottom: none; }
+  .project-bullets li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.45rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+  .skill-tag {
+    font-size: 0.7rem;
+    background: rgba(124,111,255,0.08);
+    border: 1px solid rgba(124,111,255,0.18);
+    color: var(--accent2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .exp-card:hover { border-color: var(--border2); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+  .exp-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--text);
+  }
+  .exp-meta { font-size: 0.8rem; color: var(--muted); text-align: right; }
+  .exp-org { font-size: 0.9rem; color: var(--teal); margin-bottom: 1rem; font-weight: 400; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    padding: 0.3rem 0 0.3rem 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.45rem;
+  }
+  .exp-links { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  .exp-link {
+    font-size: 0.78rem;
+    color: var(--accent2);
+    text-decoration: none;
+    border: 1px solid rgba(124,111,255,0.25);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .exp-link:hover { background: rgba(124,111,255,0.1); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .skills-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .skills-group-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+  }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-pill {
+    font-size: 0.78rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .skill-pill:hover { color: var(--text); border-color: var(--border2); }
+
+  /* CERT */
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .cert-badge {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(124,111,255,0.2), rgba(45,212,191,0.2));
+    border: 1px solid rgba(124,111,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+  .cert-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .cert-issuer { font-size: 0.82rem; color: var(--teal); margin-bottom: 0.75rem; }
+  .cert-bullets { list-style: none; }
+  .cert-bullets li {
+    font-size: 0.855rem; color: var(--muted);
+    padding: 0.25rem 0 0.25rem 1rem;
+    position: relative; line-height: 1.6;
+  }
+  .cert-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.4rem; }
+
+  /* CONTACT */
+  .contact-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+  }
+  .contact-wrap h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.75rem; font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .contact-wrap p { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--border2);
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .contact-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .contact-btn svg { width: 18px; height: 18px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted2);
+  }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .cert-card { grid-template-columns: 1fr; }
+    .cert-badge { display: none; }
+  }
+
+  /* BG decoration */
+  .hero-glow {
+    position: fixed; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,111,255,0.06) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-glow"></div>
+
+<nav>
+  <a href="#" class="nav-logo">NP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag fade-in">Available from June 2026 · OPT</div>
+      <h1 class="fade-in delay-1">
+        Naga Prem Sai<br>
+        <span class="line2">Pendela</span>
+      </h1>
+      <p class="hero-desc fade-in delay-2">
+        Data Analyst & AI Engineer building production-grade multi-agent systems and decision-intelligence platforms. MEng CS @ University of Cincinnati (GPA 3.96).
+      </p>
+      <div class="hero-btns fade-in delay-3">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="https://github.com/premsai-pendela" target="_blank" class="btn-ghost">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/nagapremsaipendela/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="hero-stats fade-in delay-4">
+      <div class="stat-card">
+        <div class="stat-num">534<span>K</span></div>
+        <div class="stat-label">Transactions analyzed in RevenueIQ</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">95<span>%</span></div>
+        <div class="stat-label">Churn prediction F1-score</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">7.7<span>×</span></div>
+        <div class="stat-label">Query speed improvement via DuckDB</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3.96</div>
+        <div class="stat-label">GPA · MEng Computer Science</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Work</div>
+  <h2>Featured Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">NexusIQ AI</div>
+        <a href="https://nexusiq-ai.streamlit.app/" target="_blank" class="project-link">Live Demo ↗</a>
+        <a href="https://github.com/premsai-pendela/NexusIQ-AI" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+      <p class="project-tagline">Answers business questions by investigating 3 sources simultaneously — and shows where they agree and where they don't.</p>
+      <ul class="project-bullets">
+        <li>4-agent orchestration (Fusion + SQL + RAG + Web) with LLM-based smart routing across 6 query types, handling 100K transactions, 23 documents, and 5 live websites</li>
+        <li>Cross-validation engine comparing SQL numbers against PDF reports with confidence-scoring — solving enterprise AI hallucination at scale</li>
+        <li>Fault-tolerant LLM orchestration via circuit breaker pattern across Gemini 2.5 + Groq LLaMA 3.3-70B with automatic fallback and zero-downtime degradation</li>
+        <li>Deployed on Streamlit Cloud + Supabase with hybrid BM25 + semantic search, typo correction, live competitor intelligence, and auto-chart builder</li>
+      </ul>
+      <div class="skill-tags">
+        <span class="skill-tag">Multi-Agent AI</span>
+        <span class="skill-tag">RAG</span>
+        <span class="skill-tag">LangGraph</span>
+        <span class="skill-tag">LLM Orchestration</span>
+        <span class="skill-tag">ChromaDB</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">NL→SQL</span>
+        <span class="skill-tag">Groq</span>
+        <span class="skill-tag">Gemini</span>
+        <span class="skill-tag">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">RevenueIQ AI</div>
+        <a href="https://revenueiq-ai-9cnn.onrender.com/" target="_blank" class="project-link">Live Demo ↗</a>
+        <a href="https://github.com/premsai-pendela/revenueiq-ai" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+      <p class="project-tagline">Transformed 534K transaction records into a decision-intelligence platform for a $10.6M e-commerce business.</p>
+      <ul class="project-bullets">
+        <li>5 production ML models (segmentation, churn, forecasting, anomaly detection) with 95% churn prediction F1-score; prioritized 978 customers for retention action</li>
+        <li>Stakeholder-facing Streamlit product with KPI dashboards and AI-generated recommendations, cutting reporting latency from 2 hours to 60 seconds</li>
+        <li>7.74× faster queries via DuckDB optimization and caching, uncovering $4M+ in monetizable opportunities across 4,320 customers</li>
+        <li>Framed and solved a high-impact business problem around 33% churn with unified analytics covering 4 executive use cases</li>
+      </ul>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">DuckDB</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Groq LLM</span>
+        <span class="skill-tag">Churn Analysis</span>
+        <span class="skill-tag">RFM/CLV</span>
+        <span class="skill-tag">Plotly</span>
+        <span class="skill-tag">Streamlit</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Background</div>
+  <h2>Experience</h2>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Research Data Analyst & Team Lead</div>
+        <div class="exp-org">Center of Innovation & Entrepreneurship, VCE · Hyderabad, India</div>
+      </div>
+      <div class="exp-meta">Aug 2023 – Apr 2024</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Led a 3-member analytics team in building and validating a 47,000-tweet dataset for cyberbullying detection across 6 classification categories</li>
+      <li>Built a full data preparation workflow — deduplication, text normalization, label validation, and feature engineering — improving dataset reliability end-to-end</li>
+      <li>Conducted exploratory analysis to evaluate class imbalance and distribution prior to model evaluation</li>
+      <li>Supported comparative evaluation of SVC, MNB, and GloVe-based pipelines, contributing to 79.8% classification accuracy</li>
+      <li>Published methodology and preprocessing workflows at IEEE ADICS 2024</li>
+    </ul>
+    <div class="exp-links">
+      <a href="https://github.com/premsai-pendela/Enhancing_Cyberbullying_detection" target="_blank" class="exp-link">GitHub ↗</a>
+      <a href="https://ieeexplore.ieee.org/document/10533585" target="_blank" class="exp-link">IEEE Paper ↗</a>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Learning</div>
+  <h2>Certifications</h2>
+
+  <div class="cert-card">
+    <div class="cert-badge">📊</div>
+    <div>
+      <div class="cert-title">Quantium Data Analytics Job Simulation</div>
+      <div class="cert-issuer">Forage · March 2026</div>
+      <ul class="cert-bullets">
+        <li>Completed an industry simulation focused on data analytics and commercial insights for a data science team</li>
+        <li>Extracted customer and transaction insights to deliver data-driven commercial recommendations</li>
+        <li>Identified benchmark stores for uplift testing on trial store layouts using statistical analysis</li>
+        <li>Built comprehensive reports for a Category Manager enabling evidence-based strategic decisions</li>
+      </ul>
+      <div style="margin-top:1rem;">
+        <div class="skill-tags">
+          <span class="skill-tag">Data Analysis</span>
+          <span class="skill-tag">Data Cleaning</span>
+          <span class="skill-tag">Statistical Analysis</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">Commercial Thinking</span>
+          <span class="skill-tag">Presentation Skills</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Toolkit</div>
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skills-group">
+      <div class="skills-group-title">AI / ML</div>
+      <div class="skills-list">
+        <span class="skill-pill">Multi-Agent AI</span>
+        <span class="skill-pill">RAG</span>
+        <span class="skill-pill">LLM Orchestration</span>
+        <span class="skill-pill">Machine Learning</span>
+        <span class="skill-pill">NL→SQL</span>
+        <span class="skill-pill">Hybrid Search</span>
+        <span class="skill-pill">LangGraph</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <div class="skills-group-title">Data & Analytics</div>
+      <div class="skills-list">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">DuckDB</span>
+        <span class="skill-pill">Pandas</span>
+        <span class="skill-pill">NumPy</span>
+        <span class="skill-pill">Scikit-learn</span>
+        <span class="skill-pill">Statistical Analysis</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <div class="skills-group-title">Databases</div>
+      <div class="skills-list">
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">ChromaDB</span>
+        <span class="skill-pill">Supabase</span>
+        <span class="skill-pill">SQLAlchemy</span>
+        <span class="skill-pill">Vector DBs</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <div class="skills-group-title">Tools & Platforms</div>
+      <div class="skills-list">
+        <span class="skill-pill">Streamlit</span>
+        <span class="skill-pill">Plotly</span>
+        <span class="skill-pill">Groq</span>
+        <span class="skill-pill">Gemini</span>
+        <span class="skill-pill">FastAPI</span>
+        <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">Streamlit Cloud</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <h3>Let's Connect</h3>
+    <p>Open to Data Analyst and AI/ML roles · Available from June 2026 (OPT)</p>
+    <div class="contact-links">
+      <a href="https://github.com/premsai-pendela" target="_blank" class="contact-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/nagapremsaipendela/" target="_blank" class="contact-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Naga Prem Sai Pendela · 2026</p>
+</footer>
+
+</body>
+</html>
